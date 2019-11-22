@@ -3,34 +3,70 @@
 
 <head>
     <title>quiz about javaScript!</title>
-    <style> 
-    div { text-align: center; }
-    button {background-color: purple; color: white; height: 40px;}
-    #timer {float: right; padding-right: 50px;}
-    a {float: left; padding-left: 50px;}
+    <style>
+        div {
+            text-align: center;
+        }
+
+        button {
+            background-color: purple;
+            color: white;
+            height: 40px;
+        }
+
+        #timer {
+            float: right;
+            padding-right: 50px;
+        }
+
+        a {
+            float: left;
+            padding-left: 50px;
+        }
     </style>
 </head>
 
 <body>
     <a href="">View Highscores</a>
-    <p id = "timer">Timer</p>
-    <div>
-<h1>JavaScript Quiz!</h1>
-<p id = "heading4">Enter the button to start your quiz. <br>
+    <p id="timer">Timer</p>
+    <div id="container">
+        <h1>JavaScript Quiz!</h1>
+        <p id="heading4">Enter the button to start your quiz. <br>
             Try to answer the following code-related questions within the time<br>
             limit. Keep in mind the incorrect answer will penalize<br>
             your score time by 10 seconds !</p>
-<button type="button" id="start-quiz">start you quiz</button>
+        <button type="button" id="start-quiz">start you quiz</button>
 
-<script>
-    var startButton = document.querySelector("#start-quiz");
-    var heading4 = document.querySelector('#heading4');
+        <!-- //call js file of questions array. -->
+        <script src="questions.js"></script>
+        <script>
+            var startButton = document.querySelector("#start-quiz");
+            var heading4 = document.querySelector('#heading4');
 
-    startButton.addEventListener("click",function() {
-        startButton.style.display = "none";
-        heading4.style.display ="none";
-        
-    })
+            startButton.addEventListener("click", function () {
+                startButton.style.display = "none";
+                heading4.style.display = "none";
+
+                var title = questions[0].title;
+
+                //create a questions
+                var question = document.createElement('h4');
+                question.textContent = title;
+                document.getElementById("container").appendChild(question);
+                // adding the choices 
+                var list = document.createElement('ul');
+                list.id = "list";
+                document.getElementById("container").appendChild(list);
+
+                for (var i = 0; i < (questions[0].choices.length); i++) {
+                    var choices = questions[0].choices[i];
+                    var choicesList = document.createElement('li');
+                    choicesList.textContent = choices;
+                    document.getElementById("list").appendChild(choicesList);
+                }
+
+
+            })
     //create a function for questions and options
         //if the answer is right tell the user that ans is right and move to next question
         //else if the answer is wrong teel the user and move to next question
@@ -39,8 +75,8 @@
     //onclick event on a  button that will start the test
        //create a function for timer 
 
-</script>
-</div>
+        </script>
+    </div>
 </body>
 
 </html>
