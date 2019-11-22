@@ -11,7 +11,7 @@
         button {
             background-color: purple;
             color: white;
-            height: 40px;
+            height: 30px;
         }
 
         #timer {
@@ -50,19 +50,22 @@
                 var title = questions[0].title;
 
                 //create a questions
-                var question = document.createElement('h4');
+                var question = document.createElement('h3');
                 question.textContent = title;
                 document.getElementById("container").appendChild(question);
                 // adding the choices 
-                var list = document.createElement('ul');
-                list.id = "list";
-                document.getElementById("container").appendChild(list);
+                // var list = document.createElement('ul');
+                // list.id = "list";
+                // document.getElementById("container").appendChild(list);
 
                 for (var i = 0; i < (questions[0].choices.length); i++) {
                     var choices = questions[0].choices[i];
-                    var choicesList = document.createElement('li');
+                    var choicesList = document.createElement("button");
+                    var linebreak = document.createElement("br");
+                    
                     choicesList.textContent = choices;
-                    document.getElementById("list").appendChild(choicesList);
+                    document.getElementById("container").appendChild(choicesList);
+                    document.getElementById("container").appendChild(linebreak);
                 }
 
 
