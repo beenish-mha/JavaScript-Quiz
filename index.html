@@ -101,8 +101,10 @@
                 //click on any options.
                 var optionButton = document.querySelector("#question-container");
                 optionButton.addEventListener("click", function () {
+                    if (j<questions.length-1) {
                     j++;
                     clear();
+                    }
                 })
               
                    
