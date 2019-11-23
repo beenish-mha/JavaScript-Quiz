@@ -7,11 +7,13 @@
         div {
             text-align: center;
         }
+
         #options {
-            background-color: green ;
+            background-color: green;
         }
+
         button {
-             background-color: purple; 
+            background-color: purple;
             color: white;
             height: 30px;
         }
@@ -38,89 +40,74 @@
             limit. Keep in mind the incorrect answer will penalize<br>
             your score time by 10 seconds !</p>
         <button type="button" id="start-quiz">start you quiz</button>
-    <div id="question-container">
-        <!-- //call js file of questions array. -->
-        <script src="questions.js"></script>
-        <script>
-            var startButton = document.querySelector("#start-quiz");
-            var heading4 = document.querySelector('#heading4');
-            
-          
-            var j = 0;
-            
-            //reload the page and get the new question.
-            function clear(){
-            
-               
-                
-                document.getElementById("question-container").innerHTML = "";
-                event.preventDefault();
-            
-                questionAndChoices();
-                
-            }
+    </div>    
+    <div id="question-container"></div>
+    <!-- //call js file of questions array. -->
+    <script src="questions.js"></script>
+    <script>
+    var startButton = document.querySelector("#start-quiz");
+    var heading4 = document.querySelector('#heading4');
+    var choicesList = "";
+    var j = 0;
+    var totalScore = 0;
+    var time = 0;
 
-            //function for questions and answers
-          
-            function questionAndChoices(){
-            
-             var title = questions[j].title;
-             var answer = questions[j].answer;
-             //create a questions
-             var question = document.createElement('h3');
-             question.textContent = title;
-             document.getElementById("question-container").appendChild(question);
-             // adding the choices 
-            
-               for (var i = 0; i < (questions[j].choices.length); i++) {
-                 var choices = questions[j].choices[i];
-                 var choicesList = document.createElement("button");
-                 var linebreak = document.createElement("br");
+
+    //reload the page and get the new question.
+    function nextQuestion() {
+        document.getElementById("question-container").innerHTML = "";
+        event.preventDefault();
+        questionAndChoices();
+       
+    }
+
+    //function for questions and answers
+    function questionAndChoices() {
+        var title = questions[j].title;
+        var answer = questions[j].answer;
+        //create a questions
+        var question = document.createElement('h3');
+        question.textContent = title;
+        document.getElementById("question-container").appendChild(question);
+        
+        // adding the choices 
+        for (var i = 0; i < (questions[j].choices.length); i++) {
+            var choices = questions[j].choices[i];
+            choicesList = document.createElement("button");
+            var linebreak = document.createElement("br");
+            choicesList.textContent = choices;
+            choicesList.setAttribute("class", "options");
+            //console.log(i+"" +""+ choicesList.id);
+            //choicesList.setAttribute("id","options");
+            choicesList.setAttribute("data-letter", choices);
+            document.getElementById("question-container").appendChild(choicesList);
+            document.getElementById("question-container").appendChild(linebreak);
+        }
+        
+    }
+
+    //click on start button       
+    startButton.addEventListener("click", function () {
+        startButton.style.display = "none";
+        heading4.style.display = "none";
+        questionAndChoices();
+    })
     
-                 choicesList.textContent = choices;
-                 choicesList.id= "options";
-                 
-                  //console.log(i+"" +""+ choicesList.id);
-                 //choicesList.setAttribute("id","options");
-                 choicesList.setAttribute("data-letter", choices);
-                 document.getElementById("question-container").appendChild(choicesList);
-                 document.getElementById("question-container").appendChild(linebreak);               
-            
-                }
-            
-               }              
-                //click on start button       
-                startButton.addEventListener("click", function () {
-                 startButton.style.display = "none";
-                 heading4.style.display = "none";
-                 
-            
-                questionAndChoices();
-                })
+    //click on choices
 
-                //click on any options.
-                var optionButton = document.querySelector("#question-container");
-                optionButton.addEventListener("click", function () {
-                    if (j<questions.length-1) {
-                    j++;
-                    clear();
-                    }
-                })
-              
-                   
-                                     
-            
-    //create a function for questions and options
-        //if the answer is right tell the user that ans is right and move to next question
-        //else if the answer is wrong teel the user and move to next question
-       //count the number of write answers. at the end of a test save the scores with 
-       //the initials.
-    //onclick event on a  button that will start the test
-       //create a function for timer 
-     
-        </script>
-    </div>
-    </div>
+    var optionButton = document.querySelector("#question-container");
+    
+    optionButton.addEventListener("click", function () {
+        var dataLetter = choicesList.getAttribute("data-letter")
+        console.log(dataLetter);
+        if (j < questions.length - 1) {
+            j++;
+            nextQuestion();
+        }
+        else {
+       alert("your quiz is finished and the total score is !");
+        }
+    })
+    </script>  
 </body>
-
 </html>
