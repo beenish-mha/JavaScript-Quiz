@@ -44,34 +44,51 @@
         <script>
             var startButton = document.querySelector("#start-quiz");
             var heading4 = document.querySelector('#heading4');
+            
+          
+            function questionAndChoices(){
+             for (var j = 0; j<questions.length; j++){
+            
+             var title = questions[j].title;
+             var answer = questions[j].answer;
+             //create a questions
+             var question = document.createElement('h3');
+             question.textContent = title;
+             document.getElementById("question-container").appendChild(question);
+             // adding the choices 
+               for (var i = 0; i < (questions[j].choices.length); i++) {
+                 var choices = questions[j].choices[i];
+                 var choicesList = document.createElement("button"); 
+                 var linebreak = document.createElement("br");
+    
+                 choicesList.textContent = choices;
+                 choicesList.id= "options";
+                  //console.log(i+"" +""+ choicesList.id);
+                 //choicesList.setAttribute("id","options");
+                 choicesList.setAttribute("data-letter", choices);
+                 document.getElementById("question-container").appendChild(choicesList);
+                 document.getElementById("question-container").appendChild(linebreak);   
 
+                 var optionButton = document.querySelectorAll("#options");
+                 optionButton[i].addEventListener("click", function () {
+                    console.log("hello");
+                    event.preventDefault();
+                   })
+            }              
+                }
+                
+             } 
+            
+            
             startButton.addEventListener("click", function () {
                 startButton.style.display = "none";
                 heading4.style.display = "none";
-
-               for (var j = 0; j<questions.length; j++){
-
-                var title = questions[j].title;
-                var answer = questions[j].answer;
-                //create a questions
-                var question = document.createElement('h3');
-                question.textContent = title;
-                document.getElementById("question-container").appendChild(question);
-                // adding the choices 
-                for (var i = 0; i < (questions[j].choices.length); i++) {
-                    var choices = questions[j].choices[i];
-                    var choicesList = document.createElement("button");
-                    var linebreak = document.createElement("br");
-                    
-                    choicesList.textContent = choices;
-                    choicesList.class=i;
-                    choicesList.setAttribute("data-letter", choices);
-                    choicesList.setAttribute("id","options");
-                    document.getElementById("question-container").appendChild(choicesList);
-                    document.getElementById("question-container").appendChild(linebreak);
-                    }
-            }                   
-            })
+            questionAndChoices();
+        })
+             
+                   
+                                     
+            
     //create a function for questions and options
         //if the answer is right tell the user that ans is right and move to next question
         //else if the answer is wrong teel the user and move to next question
@@ -79,7 +96,7 @@
        //the initials.
     //onclick event on a  button that will start the test
        //create a function for timer 
-
+     
         </script>
     </div>
     </div>
