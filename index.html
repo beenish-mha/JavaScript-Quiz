@@ -7,9 +7,11 @@
         div {
             text-align: center;
         }
-
+        #options {
+            background-color: green ;
+        }
         button {
-            background-color: purple;
+             background-color: purple; 
             color: white;
             height: 30px;
         }
@@ -36,7 +38,7 @@
             limit. Keep in mind the incorrect answer will penalize<br>
             your score time by 10 seconds !</p>
         <button type="button" id="start-quiz">start you quiz</button>
-
+    <div id="question-container">
         <!-- //call js file of questions array. -->
         <script src="questions.js"></script>
         <script>
@@ -47,28 +49,28 @@
                 startButton.style.display = "none";
                 heading4.style.display = "none";
 
-                var title = questions[0].title;
+               for (var j = 0; j<questions.length; j++){
 
+                var title = questions[j].title;
+                var answer = questions[j].answer;
                 //create a questions
                 var question = document.createElement('h3');
                 question.textContent = title;
-                document.getElementById("container").appendChild(question);
+                document.getElementById("question-container").appendChild(question);
                 // adding the choices 
-                // var list = document.createElement('ul');
-                // list.id = "list";
-                // document.getElementById("container").appendChild(list);
-
-                for (var i = 0; i < (questions[0].choices.length); i++) {
-                    var choices = questions[0].choices[i];
+                for (var i = 0; i < (questions[j].choices.length); i++) {
+                    var choices = questions[j].choices[i];
                     var choicesList = document.createElement("button");
                     var linebreak = document.createElement("br");
                     
                     choicesList.textContent = choices;
-                    document.getElementById("container").appendChild(choicesList);
-                    document.getElementById("container").appendChild(linebreak);
-                }
-
-
+                    choicesList.class=i;
+                    choicesList.setAttribute("data-letter", choices);
+                    choicesList.setAttribute("id","options");
+                    document.getElementById("question-container").appendChild(choicesList);
+                    document.getElementById("question-container").appendChild(linebreak);
+                    }
+            }                   
             })
     //create a function for questions and options
         //if the answer is right tell the user that ans is right and move to next question
@@ -79,6 +81,7 @@
        //create a function for timer 
 
         </script>
+    </div>
     </div>
 </body>
 
