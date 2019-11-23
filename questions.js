@@ -9,5 +9,10 @@ var questions = [
       choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
       answer: "parentheses"
     },
+    {
+      title: "How hard is javaScript?",
+      choices: ["not at all", "little bit", "hard", "very hard"],
+      answer: "very hard"
+    },
 
   ];

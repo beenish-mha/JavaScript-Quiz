@@ -46,8 +46,23 @@
             var heading4 = document.querySelector('#heading4');
             
           
+            var j = 0;
+            
+            //reload the page and get the new question.
+            function clear(){
+            
+               
+                
+                document.getElementById("question-container").innerHTML = "";
+                event.preventDefault();
+            
+                questionAndChoices();
+                
+            }
+
+            //function for questions and answers
+          
             function questionAndChoices(){
-             for (var j = 0; j<questions.length; j++){
             
              var title = questions[j].title;
              var answer = questions[j].answer;
@@ -56,36 +71,40 @@
              question.textContent = title;
              document.getElementById("question-container").appendChild(question);
              // adding the choices 
+            
                for (var i = 0; i < (questions[j].choices.length); i++) {
                  var choices = questions[j].choices[i];
-                 var choicesList = document.createElement("button"); 
+                 var choicesList = document.createElement("button");
                  var linebreak = document.createElement("br");
     
                  choicesList.textContent = choices;
                  choicesList.id= "options";
+                 
                   //console.log(i+"" +""+ choicesList.id);
                  //choicesList.setAttribute("id","options");
                  choicesList.setAttribute("data-letter", choices);
                  document.getElementById("question-container").appendChild(choicesList);
-                 document.getElementById("question-container").appendChild(linebreak);   
-
-                 var optionButton = document.querySelectorAll("#options");
-                 optionButton[i].addEventListener("click", function () {
-                    console.log("hello");
-                    event.preventDefault();
-                   })
-            }              
+                 document.getElementById("question-container").appendChild(linebreak);               
+            
                 }
-                
-             } 
             
+               }              
+                //click on start button       
+                startButton.addEventListener("click", function () {
+                 startButton.style.display = "none";
+                 heading4.style.display = "none";
+                 
             
-            startButton.addEventListener("click", function () {
-                startButton.style.display = "none";
-                heading4.style.display = "none";
-            questionAndChoices();
-        })
-             
+                questionAndChoices();
+                })
+
+                //click on any options.
+                var optionButton = document.querySelector("#question-container");
+                optionButton.addEventListener("click", function () {
+                    j++;
+                    clear();
+                })
+              
                    
                                      
             
