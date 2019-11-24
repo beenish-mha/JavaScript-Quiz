@@ -9,7 +9,11 @@
         }
 
         #options {
+            margin-bottom: 5px;
+            padding: 20px;
             background-color: green;
+            height: 40px;
+            width: 200px;
         }
 
         button {
@@ -44,6 +48,7 @@
     <div id="question-container"></div>
     <!-- //call js file of questions array. -->
     <script src="questions.js"></script>
+    
     <script>
     var startButton = document.querySelector("#start-quiz");
     var heading4 = document.querySelector('#heading4');
@@ -51,7 +56,7 @@
     var j = 0;
     var totalScore = 0;
     var time = 0;
-
+    
 
     //reload the page and get the new question.
     function nextQuestion() {
@@ -76,10 +81,9 @@
             choicesList = document.createElement("button");
             var linebreak = document.createElement("br");
             choicesList.textContent = choices;
-            choicesList.setAttribute("class", "options");
-            //console.log(i+"" +""+ choicesList.id);
-            //choicesList.setAttribute("id","options");
-            choicesList.setAttribute("data-letter", choices);
+            choicesList.setAttribute("id", "options");
+            choicesList.setAttribute("value", choices);
+            // console.log(choicesList.getAttribute("data-letter"));
             document.getElementById("question-container").appendChild(choicesList);
             document.getElementById("question-container").appendChild(linebreak);
         }
@@ -90,24 +94,31 @@
     startButton.addEventListener("click", function () {
         startButton.style.display = "none";
         heading4.style.display = "none";
-        questionAndChoices();
+        nextQuestion();
     })
     
     //click on choices
-
-    var optionButton = document.querySelector("#question-container");
     
-    optionButton.addEventListener("click", function () {
-        var dataLetter = choicesList.getAttribute("data-letter")
-        console.log(dataLetter);
-        if (j < questions.length - 1) {
+    var theParent = document.querySelector("#question-container");
+    theParent.addEventListener("click", doSomething, false) 
+    function doSomething(e) {
+        if(e.target !== e.currentTarget) {
+             var checkItem = e.target.id;
+             var checkData = e.target.value;
+             console.log(checkData);
+             console.log(checkItem);
+            if (j < questions.length-1) {
             j++;
             nextQuestion();
+            }
+            else {
+            alert("your quiz is finished and the total score is !");
+            }
         }
-        else {
-       alert("your quiz is finished and the total score is !");
-        }
-    })
+        
+           
+    }  
+
     </script>  
-</body>
+    </body>
 </html>
