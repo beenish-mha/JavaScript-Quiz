@@ -57,11 +57,13 @@
     var time = 0;
     var checkData;
     var answer;
+    var scores = 0;
     
     //check answers
     function checkAnswers(){
     if (checkData === answer) {
         console.log("right answer");
+        scores++;
     }
     else {
         console.log("wrong answer");
@@ -71,7 +73,7 @@
         nextQuestion(); 
     }
     else {
-        alert("your quiz is finished and the total score is !");
+        alert("your quiz is finished and the total score is : "+scores);
     }
     }
 
@@ -119,11 +121,8 @@
     theParent.addEventListener("click", doSomething, false) 
     function doSomething(e) {
         if(e.target !== e.currentTarget) {
-             var checkItem = e.target.id;
-             checkData = e.target.value;
-             console.log(checkData);
-             console.log(checkItem);
-             checkAnswers();  
+            checkData = e.target.value;
+            checkAnswers();  
         }           
     }  
 
