@@ -11,7 +11,7 @@
         #options {
             margin-bottom: 5px;
             padding: 20px;
-            background-color: green;
+            background-color: rgb(69, 104, 69);
             height: 40px;
             width: 200px;
         }
@@ -52,11 +52,28 @@
     <script>
     var startButton = document.querySelector("#start-quiz");
     var heading4 = document.querySelector('#heading4');
-    var choicesList = "";
     var j = 0;
     var totalScore = 0;
     var time = 0;
+    var checkData;
+    var answer;
     
+    //check answers
+    function checkAnswers(){
+    if (checkData === answer) {
+        console.log("right answer");
+    }
+    else {
+        console.log("wrong answer");
+    }
+    if (j < questions.length-1) {
+        j++;
+        nextQuestion(); 
+    }
+    else {
+        alert("your quiz is finished and the total score is !");
+    }
+    }
 
     //reload the page and get the new question.
     function nextQuestion() {
@@ -66,10 +83,10 @@
        
     }
 
-    //function for questions and answers
+    //function to add questions and answers
     function questionAndChoices() {
         var title = questions[j].title;
-        var answer = questions[j].answer;
+         answer = questions[j].answer;
         //create a questions
         var question = document.createElement('h3');
         question.textContent = title;
@@ -78,7 +95,7 @@
         // adding the choices 
         for (var i = 0; i < (questions[j].choices.length); i++) {
             var choices = questions[j].choices[i];
-            choicesList = document.createElement("button");
+            var choicesList = document.createElement("button");
             var linebreak = document.createElement("br");
             choicesList.textContent = choices;
             choicesList.setAttribute("id", "options");
@@ -98,26 +115,18 @@
     })
     
     //click on choices
-    
     var theParent = document.querySelector("#question-container");
     theParent.addEventListener("click", doSomething, false) 
     function doSomething(e) {
         if(e.target !== e.currentTarget) {
              var checkItem = e.target.id;
-             var checkData = e.target.value;
+             checkData = e.target.value;
              console.log(checkData);
              console.log(checkItem);
-            if (j < questions.length-1) {
-            j++;
-            nextQuestion();
-            }
-            else {
-            alert("your quiz is finished and the total score is !");
-            }
-        }
-        
-           
+             checkAnswers();  
+        }           
     }  
+
 
     </script>  
     </body>
