@@ -17,7 +17,7 @@ var questions = [
     {
       title: "Inside which HTML element do we put the JavaScript?",
       choices: ["body", "head", "link", "section"],
-      answer: "very hard"
+      answer: "body"
     },
 
   ];

@@ -15,6 +15,10 @@
             height: 40px;
             width: 200px;
         }
+        hr {
+            align-content: center;
+            width: 70%;
+        }
 
         button {
             background-color: purple;
@@ -46,40 +50,61 @@
         <button type="button" id="start-quiz">start you quiz</button>
     </div>    
     <div id="question-container"></div>
+    <div id="answer-container"></div>
     <!-- //call js file of questions array. -->
     <script src="questions.js"></script>
     
     <script>
     var startButton = document.querySelector("#start-quiz");
     var heading4 = document.querySelector('#heading4');
+    var answerCheck;
     var j = 0;
     var totalScore = 0;
     var time = 0;
     var checkData;
     var answer;
     var scores = 0;
+
     
     //check answers
     function checkAnswers(){
     if (checkData === answer) {
-        console.log("right answer");
+        answerCheck = "right answer";
         scores++;
+        showAnswer ();
     }
     else {
-        console.log("wrong answer");
+        answerCheck = "wrong answer";
+        showAnswer ();
     }
     if (j < questions.length-1) {
         j++;
+        
         nextQuestion(); 
     }
     else {
-        alert("your quiz is finished and the total score is : "+scores);
+        //alert("your quiz is finished and the total score is : "+scores);
+        showAnswer();
     }
+    
+    }
+
+    //show answer
+    function showAnswer (){
+        var line = document.createElement("hr");
+        var answerChoice = document.createElement('h4');
+        answerChoice.textContent = answerCheck;
+        document.getElementById("answer-container").innerHTML = "";
+        document.getElementById("answer-container").appendChild(line);
+        document.getElementById("answer-container").appendChild(answerChoice);
+
+        
     }
 
     //reload the page and get the new question.
     function nextQuestion() {
         document.getElementById("question-container").innerHTML = "";
+       
         event.preventDefault();
         questionAndChoices();
        
@@ -87,6 +112,7 @@
 
     //function to add questions and answers
     function questionAndChoices() {
+        
         var title = questions[j].title;
          answer = questions[j].answer;
         //create a questions
