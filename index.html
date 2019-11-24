@@ -64,7 +64,16 @@
     var checkData;
     var answer;
     var scores = 0;
-
+    var move = 0;
+  
+    //final result
+     function finalResult(){
+        document.getElementById("answer-container").innerHTML = "";
+        document.getElementById("question-container").innerHTML = "";
+        var final = document.createElement('h4');
+        final.textContent = "your final score is: "+scores;
+        document.getElementById("question-container").appendChild(final);
+     }
     
     //check answers
     function checkAnswers(){
@@ -85,19 +94,25 @@
     else {
         //alert("your quiz is finished and the total score is : "+scores);
         showAnswer();
+        move = 1;
+
     }
     
     }
 
     //show answer
     function showAnswer (){
+        if (move === 1) {
+            finalResult();
+        }
+        else {
         var line = document.createElement("hr");
         var answerChoice = document.createElement('h4');
         answerChoice.textContent = answerCheck;
         document.getElementById("answer-container").innerHTML = "";
         document.getElementById("answer-container").appendChild(line);
         document.getElementById("answer-container").appendChild(answerChoice);
-
+        }
         
     }
 
