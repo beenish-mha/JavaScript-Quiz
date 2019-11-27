@@ -5,7 +5,7 @@
     var answerCheck;
     var j = 0;
     var totalScore = 0;
-    var timeLeft = questions.length*5;
+    var timeLeft = questions.length*10;
     var checkData;
     var answer;
     var scores = 0;
@@ -36,6 +36,7 @@
     }
     else {
         answerCheck = "wrong answer";
+        timeLeft = timeLeft-5;
         showAnswer ();
     }
     if (j < questions.length-1) {
