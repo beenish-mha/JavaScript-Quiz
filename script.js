@@ -10,9 +10,7 @@
     var answer;
     var scores = 0;
     var move = 0;
-    var timerCheck = 0;
- 
- 
+     
     //final result and creating start again button\\
      function finalResult(){
         document.getElementById("answer-container").innerHTML = "";
@@ -101,9 +99,10 @@
         
     }
     function setTimer(){
-       if (timerCheck<timeLeft){
-        console.log(timerCheck);
-        timerCheck++;
+       if (timeLeft>0){
+           timer.textContent = ("Time left "+timeLeft+" secs");
+        console.log(timeLeft);
+        timeLeft--;
         console.log('hi beenish');
        }
       else {
@@ -111,7 +110,7 @@
       }
         
     }
-      test = 10
+
     //click on start button       
     startButton.addEventListener("click", function () {
         setInterval(setTimer,1000);
