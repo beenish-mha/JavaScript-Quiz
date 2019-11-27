@@ -5,14 +5,15 @@
     var answerCheck;
     var j = 0;
     var totalScore = 0;
-    var timeLeft = questions.length*10000;
+    var timeLeft = questions.length*5;
     var checkData;
     var answer;
     var scores = 0;
     var move = 0;
+    var timerCheck = 0;
  
  
-    //final result\\
+    //final result and creating start again button\\
      function finalResult(){
         document.getElementById("answer-container").innerHTML = "";
         document.getElementById("question-container").innerHTML = "";
@@ -48,7 +49,6 @@
         //alert("your quiz is finished and the total score is : "+scores);
         showAnswer();
         move = 1;
-
     }
     
     }
@@ -100,9 +100,21 @@
         }
         
     }
-
+    function setTimer(){
+       if (timerCheck<timeLeft){
+        console.log(timerCheck);
+        timerCheck++;
+        console.log('hi beenish');
+       }
+      else {
+          finalResult();
+      }
+        
+    }
+      test = 10
     //click on start button       
     startButton.addEventListener("click", function () {
+        setInterval(setTimer,1000);
         startButton.style.display = "none";
         heading4.style.display = "none";
         nextQuestion();
