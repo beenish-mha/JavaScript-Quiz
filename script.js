@@ -99,15 +99,13 @@
         }
         
     }
+
     //start coundown
     function setTimer(){
-        h3.style.padding-right = 20%;
        if (timeLeft>0){
         timer.textContent = ("Time left "+timeLeft+" secs");
-        console.log(timeLeft);
         timeLeft--;
-        console.log('hi beenish');
-       }
+        }
       else {
           finalResult();
       }
