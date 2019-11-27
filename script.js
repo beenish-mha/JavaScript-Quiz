@@ -1,4 +1,5 @@
     var startButton = document.querySelector("#start-quiz");
+    var startAgain = document.querySelector("#start-again");
     var heading4 = document.querySelector('#heading4');
     var timer = document.querySelector('#timer');
     var answerCheck;
@@ -9,10 +10,8 @@
     var answer;
     var scores = 0;
     var move = 0;
-  var slides = [{slideId: 1, h1: "test"}]
-  function getData(slideId) {
-      return slides[slideId]
-  }
+ 
+ 
     //final result\\
      function finalResult(){
         document.getElementById("answer-container").innerHTML = "";
@@ -21,9 +20,12 @@
         final.textContent = "your final score is: "+scores;
         document.getElementById("question-container").appendChild(final);
         var startAgain = document.createElement("button")
-        startAgain.setAttribute("id","#start-quiz");
+        startAgain.setAttribute("id","start-Again");
         startAgain.textContent = "Start Again";
         document.getElementById("question-container").appendChild(startAgain);
+        startAgain.addEventListener("click", function () {
+          window.location.reload(true);
+        })
      }
     
     //check answers
@@ -76,10 +78,9 @@
     }
 
     //function to add questions and answers
-    function questionAndChoices() {
-        
+    function questionAndChoices() { 
         var title = questions[j].title;
-      answer = questions[j].answer;
+        answer = questions[j].answer;
         //create a questions
         var question = document.createElement('h3');
         question.textContent = title;
